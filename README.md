@@ -33,12 +33,14 @@ I'm f2<br>
 var f = [];<br>
 var queries = [ "select .. blah blah", "update blah blah"];<br>
 <br>
-for (var i = 0; i < 2; i++)<br>
+for (var i = 0; i < queries.length; i++)<br>
 {<br>
 &#160;&#160;f[i] = function(cb, funcIndex) // sequenty gives you cb and funcIndex<br>
 &#160;&#160;{<br>
-&#160;&#160;&#160;&#160;db.query(queries[funcIndex]);<br>
-&#160;&#160;&#160;&#160;cb(); // must be called<br>
+&#160;&#160;&#160;&#160;db.query(queries[funcIndex], function(err, info)<br>
+&#160;&#160;&#160;&#160;{<br>
+&#160;&#160;&#160;&#160;&#160;&#160;cb(); // must be called<br>
+&#160;&#160;&#160;&#160;});<br>
 &#160;&#160;}<br>
 }<br>
 <br>
